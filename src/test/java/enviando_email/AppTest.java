@@ -20,7 +20,7 @@ public class AppTest {
 	
 	private String userName = "xgamemaster000@gmail.com";
 	private String senha = "sejghwwajxzzmblq";
-	
+
 
 	@Test
 	public void testeEmail() {
