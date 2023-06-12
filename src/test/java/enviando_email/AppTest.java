@@ -1,7 +1,5 @@
 package enviando_email;
 
-import static org.junit.Assert.assertTrue;
-
 import java.util.Properties;
 
 import javax.mail.Address;
@@ -21,12 +19,14 @@ public class AppTest {
 	private String userName = "xgamemaster000@gmail.com";
 	private String senha = "sejghwwajxzzmblq";
 
-
+/**
+	
 	@Test
 	public void testeEmail() {
 		try {
 
 			Properties properties = new Properties();
+			properties.put("mail.smtp.ssl.trust", "*");
 			properties.put("mail.smtp.auth", "true"); // autorizacao
 			properties.put("mail.smtp.starttls", "true"); // autenticacao
 			properties.put("mail.smtp.host", "smtp.gmail.com"); // servidor gmail
@@ -47,7 +47,7 @@ public class AppTest {
 			Address[] toUser = InternetAddress.parse("airtonnwa2010@gmail.com,airtonnwa2011@gmail.com");
 			
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress(userName)); //quem está enviando
+			message.setFrom(new InternetAddress(userName, "Airton Souza TI")); //quem está enviando
 			message.setRecipients(Message.RecipientType.TO, toUser); //email de destino
 			message.setSubject("Teste de email enviado com java"); // assunto email
 			message.setText("Teste corpo de email - vc acaba de finalizar tarefa em java mail");
@@ -61,4 +61,38 @@ public class AppTest {
 		}
 
 	}
+	
+	@Test
+	public void testeEmailP() throws Exception{
+		
+		ObjetoEnviaEmail enviaEmail = new ObjetoEnviaEmail("airtonnwa2010@gmail.com,airtonnwa2011@gmail.com",
+				"Airton Teste envio Email",
+				"Esse é apenas um teste do email java",
+				"loren ispuson sorre");
+		
+		enviaEmail.enviarEmail(false);;
+		
+	}
+
+	**/
+	
+	@Test
+	public void testeEmailH() throws Exception{
+		
+		StringBuilder stringBuilderTextoemail = new StringBuilder();
+		
+		stringBuilderTextoemail.append("Olá, <br/>");
+		stringBuilderTextoemail.append("<h3> Você está recebendo o acesso ao curso de java </h3> <br/>");
+		stringBuilderTextoemail.append("<a target=\"_blank\" href=\"https://www.google.com.br\">Acessar Google<a/> <br/>");
+		
+		ObjetoEnviaEmail enviaEmail = new ObjetoEnviaEmail("airtonnwa2010@gmail.com,airtonnwa2011@gmail.com",
+				"Airton Teste envio Email",
+				"Esse é apenas um teste do email java",
+				stringBuilderTextoemail.toString());
+		
+		enviaEmail.enviarEmailAnexo(true);;
+		
+	}	
+	
+	
 }
